@@ -1,0 +1,16 @@
+* Simple RC Low-Pass Filter Transient Analysis
+* Fixture for ngspice smoke test
+
+RC Low-Pass Filter
+
+Vin 1 0 DC 0 AC 1 SIN(0 1 1k)
+R1 1 2 1k
+C1 2 0 1u
+
+.control
+tran 10u 5m
+plot V(2)
+print V(2) > /tmp/rc_output.txt
+.endc
+
+.end

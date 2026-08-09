@@ -1,0 +1,27 @@
+{
+  "name": "FPGA Development",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "."
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "mshr-h.veriloghdl",
+        "ms-python.python",
+        "eamodio.gitlens"
+      ],
+      "settings": {
+        "files.associations": {
+          "*.v": "verilog",
+          "*.sv": "systemverilog",
+          "*.pcf": "text",
+          "*.sdc": "text"
+        }
+      }
+    }
+  },
+  "postCreateCommand": "yosys -V && command -v icepack && nextpnr-ice40 --version",
+  "remoteUser": "root",
+  "workspaceFolder": "/workspace"
+}

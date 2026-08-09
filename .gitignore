@@ -1,0 +1,14 @@
+node_modules/
+*.pyc
+__pycache__/
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Generated smoke artifacts
+fixtures/verilog/counter_sim
+fixtures/fpga/blinky.json
+fixtures/verilog/*.vcd

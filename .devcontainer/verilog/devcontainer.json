@@ -1,0 +1,28 @@
+{
+  "name": "Verilog Development",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "."
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "mshr-h.veriloghdl",
+        "ms-python.python",
+        "eamodio.gitlens"
+      ],
+      "settings": {
+        "files.associations": {
+          "*.v": "verilog",
+          "*.sv": "systemverilog",
+          "*.vh": "verilog",
+          "*.vhd": "vhdl"
+        },
+        "editor.formatOnSave": true
+      }
+    }
+  },
+  "postCreateCommand": "iverilog -V && verilator --version && python3 -c \"import cocotb; print(cocotb.__version__)\"",
+  "remoteUser": "root",
+  "workspaceFolder": "/workspace"
+}

@@ -1,0 +1,25 @@
+{
+  "name": "SPICE Circuit Simulation",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "."
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "eamodio.gitlens"
+      ],
+      "settings": {
+        "files.associations": {
+          "*.cir": "spice",
+          "*.sp": "spice",
+          "*.net": "spice"
+        }
+      }
+    }
+  },
+  "postCreateCommand": "ngspice -v && python3 --version",
+  "remoteUser": "root",
+  "workspaceFolder": "/workspace"
+}

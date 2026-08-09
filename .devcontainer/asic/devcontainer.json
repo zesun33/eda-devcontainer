@@ -1,0 +1,27 @@
+{
+  "name": "ASIC Development",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "."
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "mshr-h.veriloghdl",
+        "ms-python.python",
+        "eamodio.gitlens"
+      ],
+      "settings": {
+        "files.associations": {
+          "*.v": "verilog",
+          "*.sv": "systemverilog",
+          "*.sdc": "text",
+          "*.lib": "text"
+        }
+      }
+    }
+  },
+  "postCreateCommand": "yosys -V && sta -version && command -v openroad && /usr/bin/python3 -c \"import cocotb; print(cocotb.__version__)\"",
+  "remoteUser": "root",
+  "workspaceFolder": "/workspace"
+}

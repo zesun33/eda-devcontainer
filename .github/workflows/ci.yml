@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    # Base images are not on Docker Hub yet. This job documents the intended
+    # flow; it will fail until zesun33/{verilog,spice,fpga,asic} are available
+    # or a prior job builds eda-docker-images on the runner.
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up container runtime
+        run: |
+          if command -v docker &>/dev/null; then
+            echo "CONTAINER_RUNTIME=docker" >> $GITHUB_ENV
+          elif command -v podman &>/dev/null; then
+            echo "CONTAINER_RUNTIME=podman" >> $GITHUB_ENV
+          else
+            echo "No container runtime found"
+            exit 1
+          fi
+
+      - name: Check base images or skip
+        id: bases
+        run: |
+          missing=0
+          for img in verilog spice fpga asic; do
+            if ! $CONTAINER_RUNTIME image exists "zesun33/$img:latest" 2>/dev/null \
+              && ! $CONTAINER_RUNTIME image exists "localhost/zesun33/$img:latest" 2>/dev/null; then
+              echo "missing base: zesun33/$img"
+              missing=1
+            fi
+          done
+          if [ "$missing" = "1" ]; then
+            echo "Base images not present; skipping profile verify until Hub/sibling build is wired."
+            echo "skip=true" >> $GITHUB_OUTPUT
+          else
+            echo "skip=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Build and smoke-test profiles
+        if: steps.bases.outputs.skip != 'true'
+        run: make verify
+
+      - name: Report skip
+        if: steps.bases.outputs.skip == 'true'
+        run: echo "Skipped — build eda-docker-images first or publish to Hub."
