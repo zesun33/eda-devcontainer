@@ -13,6 +13,31 @@ These profiles consume local images from [`eda-docker-images`](https://github.co
 | `fpga` | `zesun33/fpga` | yosys 0.38, icestorm, nextpnr-ice40/ecp5, prjoxide, opensta 2.5, openroad 2.0, cocotb | Verilog HDL, Python, GitLens |
 | `asic` | `zesun33/asic` | yosys 0.38, opensta 2.5, openroad 2.0, cocotb | Verilog HDL, Python, GitLens |
 
+---
+
+## ⚡ Quick Tour: Instant Hardware IDE in Cursor & VS Code
+
+### Traditional IDE Setup vs. `eda-devcontainer`
+| Traditional Manual Setup | With `eda-devcontainer` |
+| :--- | :--- |
+| Manually find and install 5+ language extensions and linters | **1-Click "Reopen in Container"** auto-provisions everything |
+| Broken linter paths when switching projects or hosts | Pinned `verible`, `sv2v`, and `verilator` binaries already on `$PATH` |
+| Virtual environment clashes between PyTorch, cocotb, and system Python | Pre-configured Python 3.12 + `cocotb 2.0` ready to run testbenches |
+| Inconsistent team editor settings | Pinned editor defaults (format-on-save, file associations `.v`/`.sv`) |
+
+### Developer Experience in 3 Steps
+
+1. **Clone & Open**: `cursor .` or `code .`
+2. **Reopen**: Click **Reopen in Container** and select your domain (`verilog`, `spice`, `fpga`, `asic`).
+3. **Instant Verification**: On boot, the container runs its built-in sanity probe:
+   ```text
+   [postCreateCommand]
+   iverilog 12.0 (stable) | Verilator 5.020 | cocotb v2.0.1
+   ✔ All hardware extensions active and connected to container runtime.
+   ```
+
+---
+
 ## Quickstart
 
 ### Prerequisites
