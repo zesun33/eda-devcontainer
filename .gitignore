@@ -12,3 +12,10 @@ __pycache__/
 fixtures/verilog/counter_sim
 fixtures/fpga/blinky.json
 fixtures/verilog/*.vcd
+
+# Agent memory / local progress (never commit)
+MEMORY.md
+MEMORY.local.md
+.memory/
+*.memory.md
+*.local.md

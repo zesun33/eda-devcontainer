@@ -1,5 +1,6 @@
 ARG TAG=latest
-FROM zesun33/fpga:${TAG}
+ARG BASE=localhost/zesun33/fpga
+FROM ${BASE}:${TAG}
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     sudo \

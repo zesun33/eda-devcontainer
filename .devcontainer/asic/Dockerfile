@@ -1,5 +1,6 @@
 ARG TAG=latest
-FROM zesun33/asic:${TAG}
+ARG BASE=localhost/zesun33/asic
+FROM ${BASE}:${TAG}
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     sudo \
