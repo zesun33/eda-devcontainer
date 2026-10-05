@@ -1,5 +1,26 @@
 # eda-devcontainer
 
+<!-- BEGIN GENERATED PROJECT GUIDE -->
+
+## Purpose and first steps
+
+Develop hardware projects in editor containers backed by EDA images.
+
+**Who it is for:** VS Code or Cursor users developing RTL, circuits, FPGA, or ASIC designs.
+
+**First task:** Open the Verilog profile in a development container and run its fixture checks.
+
+**What to expect:** An editor environment backed by the EDA images, with extensions and workspace tasks.
+
+**Current scope:** Development environments for four domains. A Docker or Podman runtime and the corresponding base image are required.
+
+**Start here:** [Devcontainer Quickstart](README.md#quickstart).
+
+**Related projects:** [eda-docker-images](https://github.com/zesun33/eda-docker-images), [hw-agent-scaffold](https://github.com/zesun33/hw-agent-scaffold).
+
+[Choose another project](https://github.com/zesun33/personal-projects/blob/main/GETTING_STARTED.md).
+<!-- END GENERATED PROJECT GUIDE -->
+
 DevContainer profiles for hardware development — Verilog simulation, SPICE circuit analysis, FPGA synthesis, and ASIC physical design. Each profile provides a purpose-built development environment with pre-installed EDA tools, VS Code extensions, and workspace tasks.
 
 These profiles consume images from [`eda-docker-images`](https://github.com/zesun33/eda-docker-images). Prefer public GHCR tags (`ghcr.io/zesun33/...`); local `localhost/zesun33/...` builds still work after `make all` in that repo.
@@ -8,7 +29,7 @@ These profiles consume images from [`eda-docker-images`](https://github.com/zesu
 
 | Profile | Base Image | Tools | Extensions |
 |---|---|---|---|
-| `verilog` | `ghcr.io/zesun33/verilog` (or local `localhost/...`) | iverilog 12.0, verilator 5.020, verible, sv2v, svlint, cocotb 2.0 | Verilog HDL, Python, GitLens |
+| `verilog` | `ghcr.io/zesun33/verilog` (or local `localhost/...`) | iverilog 12.0, verilator 5.050, verible, sv2v, svlint, cocotb 2.0 | Verilog HDL, Python, GitLens |
 | `spice` | `ghcr.io/zesun33/spice` | ngspice 42, cocotb 2.0 | Python, GitLens |
 | `fpga` | `ghcr.io/zesun33/fpga` | yosys 0.38, icestorm, nextpnr-ice40/ecp5, prjoxide, opensta 2.5, openroad 2.0, cocotb | Verilog HDL, Python, GitLens |
 | `asic` | `ghcr.io/zesun33/asic` | yosys 0.38, opensta 2.5, openroad 2.0, cocotb | Verilog HDL, Python, GitLens |
@@ -32,7 +53,7 @@ These profiles consume images from [`eda-docker-images`](https://github.com/zesu
 3. **Instant Verification**: On boot, the container runs its built-in sanity probe:
    ```text
    [postCreateCommand]
-   iverilog 12.0 (stable) | Verilator 5.020 | cocotb v2.0.1
+   iverilog 12.0 (stable) | Verilator 5.050 | cocotb v2.0.1
    ✔ All hardware extensions active and connected to container runtime.
    ```
 
